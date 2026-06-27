@@ -1,0 +1,56 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "VCwA7BXCefYkMVEN_WK3P"
+uri = "file://public/images/slot-qilin.png"
+type = "image"
+title = "Qilin slot thumbnail"
+
+[[generated]]
+id = "t3t3nrXx8JyGIMGW7Vp8U"
+uri = "file://public/images/slot-apollo.png"
+type = "image"
+title = "Apollo slot thumbnail"
+
+[[generated]]
+id = "4rAmSmVtWj9jAKgX-peam"
+uri = "file://public/images/slot-ganesha.png"
+type = "image"
+title = "Ganesha slot thumbnail"
+
+[[generated]]
+id = "rPct0aqziGIGhCXdl3bHO"
+uri = "file://public/images/slot-egypt.png"
+type = "image"
+title = "Egypt slot thumbnail"
+
+[[generated]]
+id = "PwNXs0viQ-DU1DzTenICX"
+uri = "file://public/images/slot-happiness.png"
+type = "image"
+title = "Double Happiness thumbnail"
+
+[[generated]]
+id = "uTeAVJtGIUdIe0Y6FVgAI"
+uri = "file://public/images/slot-phoenix.png"
+type = "image"
+title = "Phoenix slot thumbnail"
+
+[[generated]]
+id = "JWcdHYeaSY7e_oLSu6JtV"
+uri = "file://public/images/slot-mahjong.png"
+type = "image"
+title = "Mahjong slot thumbnail"
+
+[[generated]]
+id = "s0RGLxK4ks_HuAsYcTXLG"
+uri = "file://public/images/slot-neko.png"
+type = "image"
+title = "Lucky Neko slot thumbnail"
+
+[[generated]]
+id = "G-PXOVHzrQ-7-84hd3KVv"
+uri = "file://public/images/slot-medusa.png"
+type = "image"
+title = "Medusa slot thumbnail"
