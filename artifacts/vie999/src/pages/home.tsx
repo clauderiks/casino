@@ -142,7 +142,7 @@ export default function Home() {
         <svg width="18" height="18" viewBox="0 0 24 24" fill="#FFF0BB" style={{ flexShrink: 0 }}><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
         <div style={{ flex: 1, overflow: "hidden" }} className="ticker-wrap">
           <span className="ticker-content" style={{ fontSize: 12, color: "#C5FAFF" }}>
-            Chúc mừng bạn đã đến với VIE999! Nạp lần đầu nhận 150% thưởng lên đến 5,000,000 VNĐ. Mừng ngày khai trương sòng bài Venetian và nhận ngay ưu đãi đặc biệt. Chúc các bạn chơi game vui vẻ và may mắn!
+            Chúc mừng bạn đã đến với HUYNH THUONG! Nạp lần đầu nhận 150% thưởng lên đến 5,000,000 VNĐ. Mừng ngày khai trương sòng bài Venetian và nhận ngay ưu đãi đặc biệt. Chúc các bạn chơi game vui vẻ và may mắn!
           </span>
         </div>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="#9DE0E6" style={{ flexShrink: 0 }}><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>

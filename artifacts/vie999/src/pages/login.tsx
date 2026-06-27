@@ -42,7 +42,7 @@ export default function Login() {
             <span className="text-4xl">🔥</span>
           </div>
           <h1 className="text-2xl font-black text-white mb-2">ĐĂNG NHẬP</h1>
-          <p className="text-sm text-muted-foreground">Chào mừng trở lại với VIE999</p>
+          <p className="text-sm text-muted-foreground">Chào mừng trở lại với HUYNH THUONG</p>
         </div>
 
         <div className="bg-card border border-border/50 rounded-xl p-5 shadow-lg">

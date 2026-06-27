@@ -199,7 +199,7 @@ export function Layout({ children, activeTab, onTabChange }: LayoutProps) {
               <IconMenu size={22} />
             </button>
             <Link href="/">
-              <img src={LOGO} alt="VIE999" style={{ height: 28, objectFit: "contain" }} />
+              <img src={LOGO} alt="HUYNH THUONG" style={{ height: 28, objectFit: "contain" }} />
             </Link>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 6 }}>

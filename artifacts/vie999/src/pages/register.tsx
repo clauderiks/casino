@@ -145,7 +145,7 @@ export default function Register() {
               />
 
               <div className="text-[10px] text-muted-foreground text-center">
-                Bằng cách đăng ký, bạn đồng ý với <a href="#" className="text-primary hover:underline">Điều khoản & Điều kiện</a> của VIE999
+                Bằng cách đăng ký, bạn đồng ý với <a href="#" className="text-primary hover:underline">Điều khoản & Điều kiện</a> của HUYNH THUONG
               </div>
               
               <Button type="submit" className="w-full h-12 text-md font-bold bg-primary text-black hover:bg-primary/90" data-testid="button-submit-register">
