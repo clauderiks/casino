@@ -3,7 +3,6 @@ import { Layout } from "@/components/layout/layout";
 import useEmblaCarousel from "embla-carousel-react";
 
 const CDN = "https://xgamecdn.com";
-const VIE = "https://vie999.com";
 
 const banners = [
   `${CDN}/kp/202604/TENL9HFvJ1JW77vO.png`,
@@ -42,16 +41,38 @@ const slotsGames = [
   { id: 24, name: "Fortune Ox",             provider: "WG",  img: `${CDN}/game/OM/g/WG/3/41015/0.png`,         fav: false },
 ];
 
+/* SVG icons for tabs — no external images needed */
+const TabIcons: Record<string, (active: boolean) => React.ReactNode> = {
+  hot: (a) => (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill={a ? "#FFF0BB" : "#9DE0E6"}>
+      <path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z"/>
+    </svg>
+  ),
+  slots: (a) => (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill={a ? "#FFF0BB" : "#9DE0E6"}>
+      <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/>
+    </svg>
+  ),
+  recent: (a) => (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill={a ? "#FFF0BB" : "#9DE0E6"}>
+      <path d="M13 3a9 9 0 0 0-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.954 8.954 0 0 0 13 21a9 9 0 0 0 0-18zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/>
+    </svg>
+  ),
+  favorite: (a) => (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill={a ? "#FFF0BB" : "#9DE0E6"}>
+      <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+    </svg>
+  ),
+};
+
 const tabs = [
-  { id: "hot",      iconImg: `${VIE}/img/default/hot_active.png`,     label: "Hot" },
-  { id: "slots",    iconImg: `${VIE}/img/default/digital_active.png`, label: "Slots" },
-  { id: "recent",   emoji: "⏱",                                        label: "Recent" },
-  { id: "favorite", emoji: "★",                                        label: "Favorite" },
+  { id: "hot",      label: "Hot"      },
+  { id: "slots",    label: "Slots"    },
+  { id: "recent",   label: "Recent"   },
+  { id: "favorite", label: "Favorite" },
 ];
 
-const NOTICE_GIF = `${VIE}/img/colors/skin1/chivas_regal_blue/notice_gif.png`;
-const JACKPOT_BG  = `${CDN}/kp/202604/Od2BpfvOItlrtyuv.png`;
-const READ_ICON   = `${VIE}/img/colors/skin1/chivas_regal_blue/read.png`;
+const JACKPOT_BG = `${CDN}/kp/202604/Od2BpfvOItlrtyuv.png`;
 
 export default function Home() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, dragFree: false });
@@ -118,13 +139,13 @@ export default function Home() {
 
       {/* ═══ ANNOUNCEMENT TICKER ═══ */}
       <div style={{ display: "flex", alignItems: "center", background: "rgba(0,0,0,0.15)", padding: "5px 10px", gap: 6, overflow: "hidden" }}>
-        <img src={NOTICE_GIF} alt="" style={{ width: 18, height: 18, flexShrink: 0 }} onError={e => (e.currentTarget.style.display = "none")} />
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#FFF0BB" style={{ flexShrink: 0 }}><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
         <div style={{ flex: 1, overflow: "hidden" }} className="ticker-wrap">
           <span className="ticker-content" style={{ fontSize: 12, color: "#C5FAFF" }}>
             Chúc mừng bạn đã đến với VIE999! Nạp lần đầu nhận 150% thưởng lên đến 5,000,000 VNĐ. Mừng ngày khai trương sòng bài Venetian và nhận ngay ưu đãi đặc biệt. Chúc các bạn chơi game vui vẻ và may mắn!
           </span>
         </div>
-        <img src={READ_ICON} alt="" style={{ width: 18, height: 18, flexShrink: 0 }} onError={e => (e.currentTarget.style.display = "none")} />
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#9DE0E6" style={{ flexShrink: 0 }}><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
       </div>
 
       {/* ═══ GAME CATEGORY TABS ═══ */}
@@ -146,11 +167,7 @@ export default function Home() {
               marginBottom: -2,
             }}
           >
-            {t.iconImg ? (
-              <img src={t.iconImg} alt={t.label} style={{ width: 20, height: 20, objectFit: "contain", opacity: activeTab === t.id ? 1 : 0.55 }} />
-            ) : (
-              <span style={{ fontSize: 18, color: activeTab === t.id ? "#FFF0BB" : "#9DE0E6", lineHeight: 1 }}>{t.emoji}</span>
-            )}
+            {TabIcons[t.id]?.(activeTab === t.id)}
             <span style={{ fontSize: 11, color: activeTab === t.id ? "#FFF0BB" : "#9DE0E6", fontWeight: activeTab === t.id ? 700 : 400 }}>
               {t.label}
             </span>
@@ -160,7 +177,7 @@ export default function Home() {
 
       {/* ═══ HOT label ═══ */}
       <div style={{ padding: "8px 12px 4px", display: "flex", alignItems: "center", gap: 6 }}>
-        <img src={`${VIE}/img/default/hot_active.png`} alt="" style={{ width: 16, height: 16 }} />
+        {TabIcons[activeTab]?.(true)}
         <span style={{ color: "#FFF0BB", fontWeight: 700, fontSize: 14 }}>
           {tabs.find(t => t.id === activeTab)?.label}
         </span>
