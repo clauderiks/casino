@@ -1,161 +1,224 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Layout } from "@/components/layout/layout";
 import useEmblaCarousel from "embla-carousel-react";
-import { Volume2, Star, Play } from "lucide-react";
-import { motion } from "framer-motion";
-import { Button } from "react-day-picker";
 
-const games = [
-  { id: 1, name: "Ways of the Qilin", provider: "PG", img: "/images/slot-qilin.png", hot: true },
-  { id: 2, name: "Rise of Apollo", provider: "PG", img: "/images/slot-apollo.png" },
-  { id: 3, name: "Ganesha Fortune", provider: "PG", img: "/images/slot-ganesha.png", hot: true },
-  { id: 4, name: "Egypt's Book of Mystery", provider: "PG", img: "/images/slot-egypt.png" },
-  { id: 5, name: "Double Happiness", provider: "JL", img: "/images/slot-happiness.png" },
-  { id: 6, name: "Phoenix Rises", provider: "PG", img: "/images/slot-phoenix.png", hot: true },
-  { id: 7, name: "Mahjong Ways", provider: "PG", img: "/images/slot-mahjong.png", hot: true },
-  { id: 8, name: "Lucky Neko", provider: "PG", img: "/images/slot-neko.png" },
-  { id: 9, name: "Medusa 2", provider: "PG", img: "/images/slot-medusa.png" },
+const CDN = "https://xgamecdn.com";
+const VIE = "https://vie999.com";
+
+const banners = [
+  `${CDN}/kp/202604/TENL9HFvJ1JW77vO.png`,
+  `${CDN}/kp/202604/vo7Iww95-46d-_XC.png`,
+  `${CDN}/kp/202604/i2tX9HzTKt61pL5h.png`,
+  `${CDN}/kp/202604/2Q0EpeG-e8_uO1mG.png`,
 ];
 
-const categories = [
-  { id: 'hot', label: 'Hot', icon: '🔥' },
-  { id: 'slots', label: 'Slots', icon: '🎰' },
-  { id: 'recent', label: 'Recent', icon: '⏱' },
-  { id: 'favorite', label: 'Favorite', icon: '⭐' },
+const hotGames = [
+  { id: 1, name: "Ways of the Qilin",       provider: "PG",  img: `${CDN}/game/OM/g/PGC/3/31047/0.png`,        fav: true  },
+  { id: 2, name: "Rise of Apollo",           provider: "PG",  img: `${CDN}/game/OM/g/PGC/3/31048/0.png`,        fav: false },
+  { id: 3, name: "Ganesha Fortune",          provider: "PG",  img: `${CDN}/game/OM/g/PGC/3/31042/0.png`,        fav: true  },
+  { id: 4, name: "Egypt's Book of Mystery",  provider: "PG",  img: `${CDN}/game/OM/g/PGC/3/31040/0.png`,        fav: false },
+  { id: 5, name: "Double Happiness",         provider: "PG",  img: `${CDN}/game/OM/g/PGC/3/31033/0.png`,        fav: false },
+  { id: 6, name: "Phoenix Rises",            provider: "PG",  img: `${CDN}/game/OM/g/PGC/3/31031/0.png`,        fav: true  },
+  { id: 7, name: "Mahjong Ways",             provider: "PG",  img: `${CDN}/game/OM/g/PGC/3/31030/0.png`,        fav: true  },
+  { id: 8, name: "Lucky Neko",               provider: "PG",  img: `${CDN}/game/OM/g/PGC/3/31026/0.png`,        fav: false },
+  { id: 9, name: "Medusa 2",                 provider: "PG",  img: `${CDN}/game/OM/g/PG/3/1508783/0.png`,       fav: false },
 ];
+
+const slotsGames = [
+  { id: 10, name: "Battleground Royale",     provider: "PG",  img: `${CDN}/game/OM/g/PG/3/1804577/0.png`,       fav: false },
+  { id: 11, name: "Jungle Delight",          provider: "JL",  img: `${CDN}/game/OM/g/JL/3/463/0.png`,           fav: false },
+  { id: 12, name: "Caishen Wins",            provider: "NJL", img: `${CDN}/game/OM/g/NJL/3/31226/0.png`,        fav: true  },
+  { id: 13, name: "JL Treasure",             provider: "JL",  img: `${CDN}/game/OM/g/JL/3/263/0.png`,           fav: false },
+  { id: 14, name: "Money Cat",               provider: "NJL", img: `${CDN}/game/OM/g/NJL/3/31262/0.png`,        fav: false },
+  { id: 15, name: "Lucky Tiger",             provider: "PP",  img: `${CDN}/game/OM/g/PP/3/vs5luckytig/0.png`,   fav: false },
+  { id: 16, name: "Fortune Dragon",          provider: "PG",  img: `${CDN}/game/OM/g/PG/3/1879752/0.png`,       fav: true  },
+  { id: 17, name: "Zeus vs Hades",           provider: "PP",  img: `${CDN}/game/OM/g/PP/3/vs15godsofwar/0.png`, fav: false },
+  { id: 18, name: "Rainbow Gold",            provider: "PP",  img: `${CDN}/game/OM/g/PP/3/vs20rainbowrsh/0.png`,fav: false },
+  { id: 19, name: "Sic Bo",                  provider: "TD",  img: `${CDN}/game/OM/g/TD/3/87/0.png`,            fav: false },
+  { id: 20, name: "Dragon Gold",             provider: "NJL", img: `${CDN}/game/OM/g/NJL/3/31219/0.png`,        fav: false },
+  { id: 21, name: "Wild Bandits",            provider: "PP",  img: `${CDN}/game/OM/g/PP/3/vs25wildies/0.png`,   fav: false },
+  { id: 22, name: "Mahjong Wins Bonus",      provider: "PP",  img: `${CDN}/game/OM/g/PP/3/vs1024mjwinbns/0.png`,fav: true  },
+  { id: 23, name: "JDB Treasure",            provider: "JDB", img: `${CDN}/game/OM/g/JDB/3/1404500/0.png`,      fav: false },
+  { id: 24, name: "Fortune Ox",             provider: "WG",  img: `${CDN}/game/OM/g/WG/3/41015/0.png`,         fav: false },
+];
+
+const tabs = [
+  { id: "hot",      iconImg: `${VIE}/img/default/hot_active.png`,     label: "Hot" },
+  { id: "slots",    iconImg: `${VIE}/img/default/digital_active.png`, label: "Slots" },
+  { id: "recent",   emoji: "⏱",                                        label: "Recent" },
+  { id: "favorite", emoji: "★",                                        label: "Favorite" },
+];
+
+const NOTICE_GIF = `${VIE}/img/colors/skin1/chivas_regal_blue/notice_gif.png`;
+const JACKPOT_BG  = `${CDN}/kp/202604/Od2BpfvOItlrtyuv.png`;
+const READ_ICON   = `${VIE}/img/colors/skin1/chivas_regal_blue/read.png`;
 
 export default function Home() {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
-  const [activeTab, setActiveTab] = useState('hot');
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, dragFree: false });
+  const [activeIdx, setActiveIdx] = useState(0);
+  const [activeTab, setActiveTab] = useState("hot");
   const [jackpot, setJackpot] = useState(621100219);
+  const [favorites, setFavorites] = useState<Set<number>>(new Set([1, 3, 6, 7, 12, 16, 22]));
+  const tickerRef = useRef<HTMLDivElement>(null);
 
-  // Auto-slide carousel
+  /* Auto-slide banner */
   useEffect(() => {
     if (!emblaApi) return;
-    const interval = setInterval(() => {
-      emblaApi.scrollNext();
-    }, 3000);
-    return () => clearInterval(interval);
+    const onSelect = () => setActiveIdx(emblaApi.selectedScrollSnap());
+    emblaApi.on("select", onSelect);
+    const iv = setInterval(() => emblaApi.scrollNext(), 3000);
+    return () => { clearInterval(iv); emblaApi.off("select", onSelect); };
   }, [emblaApi]);
 
-  // Jackpot counter animation
+  /* Jackpot counter */
   useEffect(() => {
-    const interval = setInterval(() => {
-      setJackpot(prev => prev + Math.floor(Math.random() * 500) + 100);
-    }, 2000);
-    return () => clearInterval(interval);
+    const iv = setInterval(() => {
+      setJackpot(p => p + Math.floor(Math.random() * 300 + 50));
+    }, 1500);
+    return () => clearInterval(iv);
   }, []);
 
+  const toggleFav = (id: number) => {
+    setFavorites(prev => {
+      const s = new Set(prev);
+      s.has(id) ? s.delete(id) : s.add(id);
+      return s;
+    });
+  };
+
+  const displayGames = activeTab === "hot" ? hotGames
+    : activeTab === "slots" ? slotsGames
+    : activeTab === "favorite" ? [...hotGames, ...slotsGames].filter(g => favorites.has(g.id))
+    : hotGames.slice(0, 6);
+
   return (
-    <Layout>
-      {/* Banner Carousel */}
-      <div className="overflow-hidden bg-card" ref={emblaRef}>
-        <div className="flex">
-          {[1, 2, 3].map((i) => (
-            <div key={i} className="flex-[0_0_100%] min-w-0 p-2">
-              <div className={`rounded-xl aspect-[21/9] flex items-center justify-center p-4 relative overflow-hidden bg-gradient-to-r ${i === 1 ? 'from-purple-900 to-indigo-800' : i === 2 ? 'from-blue-900 to-cyan-900' : 'from-red-900 to-orange-900'}`}>
-                <div className="absolute inset-0 bg-black/20"></div>
-                <div className="relative z-10 text-center">
-                  <h2 className="text-2xl font-black text-white drop-shadow-md tracking-tight uppercase mb-1">
-                    NẠP LẦN ĐẦU <span className="text-secondary">150%</span>
-                  </h2>
-                  <p className="text-sm text-white/90 font-medium">Thưởng lên đến 5,000,000 VNĐ</p>
-                </div>
-              </div>
+    <Layout activeTab={activeTab} onTabChange={setActiveTab}>
+
+      {/* ═══ BANNER CAROUSEL ═══ */}
+      <div style={{ overflow: "hidden", position: "relative" }} ref={emblaRef}>
+        <div style={{ display: "flex" }}>
+          {banners.map((src, i) => (
+            <div key={i} style={{ flex: "0 0 100%", minWidth: 0 }}>
+              <img
+                src={src} alt={`Banner ${i + 1}`}
+                style={{ width: "100%", aspectRatio: "21/9", objectFit: "cover", display: "block" }}
+                loading={i === 0 ? "eager" : "lazy"}
+              />
             </div>
           ))}
         </div>
       </div>
 
-      {/* Announcement Ticker */}
-      <div className="flex items-center px-3 py-2 bg-primary/10 border-y border-primary/20">
-        <Volume2 className="w-4 h-4 text-primary mr-2 shrink-0" />
-        <div className="overflow-hidden flex-1 relative h-5">
-          <motion.div 
-            animate={{ x: [0, -500] }}
-            transition={{ ease: "linear", duration: 15, repeat: Infinity }}
-            className="whitespace-nowrap text-xs text-primary font-medium absolute whitespace-nowrap"
-          >
-            Chào mừng đến với VIE999! Nạp lần đầu nhận 150% thưởng lên đến 5,000,000 VNĐ. Chúc các bạn chơi game vui vẻ!
-          </motion.div>
-        </div>
+      {/* Banner dots */}
+      <div className="swiper-dots" style={{ paddingBottom: 4 }}>
+        {banners.map((_, i) => (
+          <div key={i} className={`swiper-dot ${i === activeIdx ? "active" : ""}`} />
+        ))}
       </div>
 
-      {/* Categories */}
-      <div className="sticky top-0 z-30 bg-background/95 backdrop-blur px-2 py-3 flex gap-2 overflow-x-auto no-scrollbar border-b border-border/50">
-        {categories.map(cat => (
+      {/* ═══ ANNOUNCEMENT TICKER ═══ */}
+      <div style={{ display: "flex", alignItems: "center", background: "rgba(0,0,0,0.15)", padding: "5px 10px", gap: 6, overflow: "hidden" }}>
+        <img src={NOTICE_GIF} alt="" style={{ width: 18, height: 18, flexShrink: 0 }} onError={e => (e.currentTarget.style.display = "none")} />
+        <div style={{ flex: 1, overflow: "hidden" }} className="ticker-wrap">
+          <span className="ticker-content" style={{ fontSize: 12, color: "#C5FAFF" }}>
+            Chúc mừng bạn đã đến với VIE999! Nạp lần đầu nhận 150% thưởng lên đến 5,000,000 VNĐ. Mừng ngày khai trương sòng bài Venetian và nhận ngay ưu đãi đặc biệt. Chúc các bạn chơi game vui vẻ và may mắn!
+          </span>
+        </div>
+        <img src={READ_ICON} alt="" style={{ width: 18, height: 18, flexShrink: 0 }} onError={e => (e.currentTarget.style.display = "none")} />
+      </div>
+
+      {/* ═══ GAME CATEGORY TABS ═══ */}
+      <div style={{
+        position: "sticky", top: 0, zIndex: 30,
+        background: "#0090AF",
+        display: "flex", borderBottom: "2px solid rgba(255,255,255,0.1)",
+      }}>
+        {tabs.map(t => (
           <button
-            key={cat.id}
-            onClick={() => setActiveTab(cat.id)}
-            className={`flex flex-col items-center gap-1 px-4 py-2 rounded-lg whitespace-nowrap transition-colors relative ${activeTab === cat.id ? 'bg-primary/10 text-primary font-bold' : 'text-muted-foreground'}`}
-            data-testid={`tab-${cat.id}`}
+            key={t.id}
+            data-testid={`tab-${t.id}`}
+            onClick={() => setActiveTab(t.id)}
+            style={{
+              flex: 1, background: "none", border: "none", cursor: "pointer",
+              padding: "8px 4px 6px",
+              display: "flex", flexDirection: "column", alignItems: "center", gap: 3,
+              borderBottom: activeTab === t.id ? "2px solid #FFF0BB" : "2px solid transparent",
+              marginBottom: -2,
+            }}
           >
-            <span className="text-lg">{cat.icon}</span>
-            <span className="text-xs">{cat.label}</span>
-            {activeTab === cat.id && (
-              <motion.div layoutId="activeTab" className="absolute bottom-0 left-2 right-2 h-0.5 bg-primary rounded-t-full" />
+            {t.iconImg ? (
+              <img src={t.iconImg} alt={t.label} style={{ width: 20, height: 20, objectFit: "contain", opacity: activeTab === t.id ? 1 : 0.55 }} />
+            ) : (
+              <span style={{ fontSize: 18, color: activeTab === t.id ? "#FFF0BB" : "#9DE0E6", lineHeight: 1 }}>{t.emoji}</span>
             )}
+            <span style={{ fontSize: 11, color: activeTab === t.id ? "#FFF0BB" : "#9DE0E6", fontWeight: activeTab === t.id ? 700 : 400 }}>
+              {t.label}
+            </span>
           </button>
         ))}
       </div>
 
-      {/* Jackpot Banner */}
-      <div className="px-3 py-4">
-        <div className="relative rounded-xl overflow-hidden border border-secondary/30 bg-gradient-to-b from-card to-background p-4 flex flex-col items-center justify-center shadow-[0_0_15px_rgba(255,215,0,0.1)]">
-          <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
-          
-          <div className="text-secondary font-bold text-xs uppercase tracking-[0.2em] mb-1">Grand Jackpot</div>
-          
-          <div className="flex items-center justify-center gap-1 font-mono text-3xl font-black jackpot-gradient drop-shadow-[0_0_10px_rgba(255,215,0,0.5)]">
-            <span className="text-secondary/70 text-xl font-sans">₫</span>
-            {jackpot.toLocaleString('en-US')}
+      {/* ═══ HOT label ═══ */}
+      <div style={{ padding: "8px 12px 4px", display: "flex", alignItems: "center", gap: 6 }}>
+        <img src={`${VIE}/img/default/hot_active.png`} alt="" style={{ width: 16, height: 16 }} />
+        <span style={{ color: "#FFF0BB", fontWeight: 700, fontSize: 14 }}>
+          {tabs.find(t => t.id === activeTab)?.label}
+        </span>
+      </div>
+
+      {/* ═══ JACKPOT BANNER ═══ */}
+      <div style={{ padding: "0 10px 8px" }}>
+        <div style={{
+          position: "relative", borderRadius: 10, overflow: "hidden",
+          background: `url(${JACKPOT_BG}) center/cover no-repeat`,
+          minHeight: 70,
+          display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
+        }}>
+          {/* fallback gradient if image fails */}
+          <div style={{
+            position: "absolute", inset: 0,
+            background: "linear-gradient(90deg, #1a3a4a, #0f2535, #1a3a4a)",
+            zIndex: 0,
+          }} />
+          <div style={{ position: "relative", zIndex: 1, textAlign: "center", padding: "10px 0" }}>
+            <div style={{ fontSize: 10, color: "#C5FAFF", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 2 }}>
+              JACKPOTS
+            </div>
+            <div className="jackpot-num" style={{ fontSize: 30 }}>
+              {jackpot.toLocaleString("vi-VN")}
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Games Grid */}
-      <div className="px-3 grid grid-cols-3 gap-3 pb-6">
-        {games.map((game, i) => (
-          <motion.div 
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.05 }}
-            key={game.id} 
-            className="group cursor-pointer relative"
-            data-testid={`game-card-${game.id}`}
-          >
-            <div className="relative aspect-[3/4] rounded-lg overflow-hidden bg-card border border-border/50 group-hover:border-primary/50 group-hover:shadow-[0_0_10px_rgba(0,200,255,0.2)] transition-all">
-              <img src={game.img} alt={game.name} className="w-full h-full object-cover transition-transform group-hover:scale-110" loading="lazy" />
-              
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80" />
-              
-              {/* Badges */}
-              <div className="absolute top-1 left-1 bg-black/60 backdrop-blur rounded px-1.5 py-0.5 text-[9px] font-bold text-white border border-white/10">
-                {game.provider}
-              </div>
-              <div className="absolute top-1 right-1">
-                <Star className={`w-3.5 h-3.5 ${game.hot ? 'text-secondary fill-secondary drop-shadow-[0_0_2px_rgba(255,215,0,0.8)]' : 'text-white/50'}`} />
-              </div>
-              
-              {/* Play Button Overlay */}
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-sm">
-                <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-black">
-                  <Play className="w-4 h-4 fill-current ml-0.5" />
-                </div>
-              </div>
-              
-              <div className="absolute bottom-1 w-full px-1.5">
-                <h3 className="text-[10px] font-medium text-white truncate text-center drop-shadow-md">{game.name}</h3>
-              </div>
-            </div>
-          </motion.div>
+      {/* ═══ GAME GRID ═══ */}
+      <div style={{ padding: "0 8px 80px", display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8 }}>
+        {displayGames.map(game => (
+          <div key={game.id} className="game-card" data-testid={`game-card-${game.id}`}>
+            <img
+              src={game.img}
+              alt={game.name}
+              loading="lazy"
+              onError={e => {
+                (e.currentTarget as HTMLImageElement).src = `https://via.placeholder.com/200x267/005f78/C5FAFF?text=${encodeURIComponent(game.name)}`;
+              }}
+            />
+            <div className="provider-badge">{game.provider}</div>
+            <button
+              className={`fav-icon ${favorites.has(game.id) ? "active" : ""}`}
+              onClick={e => { e.stopPropagation(); toggleFav(game.id); }}
+              data-testid={`fav-${game.id}`}
+              style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }}
+            >★</button>
+            <div className="game-name">{game.name}</div>
+          </div>
         ))}
-      </div>
-      
-      <div className="px-3 pb-8 flex justify-center">
-        <Button variant="outline" className="w-full bg-card/50 border-border text-muted-foreground text-xs h-8">
-          Tải thêm trò chơi
-        </Button>
+
+        {displayGames.length === 0 && (
+          <div style={{ gridColumn: "1 / -1", textAlign: "center", padding: "40px 0", color: "#9DE0E6", fontSize: 13 }}>
+            Chưa có game nào trong danh sách này
+          </div>
+        )}
       </div>
     </Layout>
   );
