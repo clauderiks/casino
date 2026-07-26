@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Roboto:wght@400;500;700&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
@@ -35,38 +35,36 @@
 
 :root {
   --app-font-sans: 'Roboto', sans-serif;
+  --app-font-heading: 'Oswald', sans-serif;
   --radius: 0.5rem;
 
-  /* VIE999 chivas_regal_blue cyan theme */
-  --bg-main: #00A3C6;
-  --bg-dark: #0090AF;
-  --bg-light: #62C3DF;
-  --color-primary-accent: #FFF0BB;
-  --color-neutral-1: #C5FAFF;
-  --color-neutral-2: #9DE0E6;
-  --color-border-real: #0BB5D9;
+  --bg-main: #13131F;
+  --bg-dark: #0D0D1A;
+  --bg-card: #1A1A2E;
+  --color-gold: #C9A84C;
+  --color-gold-light: #F5D787;
+  --color-red: #C0272D;
 
-  --background: 191 100% 39%;
+  --background: 240 24% 10%;
   --foreground: 0 0% 100%;
-  --card: 191 100% 34%;
+  --card: 240 28% 14%;
   --card-foreground: 0 0% 100%;
-  --card-border: 192 95% 45%;
-  --popover: 191 100% 34%;
+  --card-border: 43 54% 54%;
+  --popover: 240 28% 14%;
   --popover-foreground: 0 0% 100%;
-  --popover-border: 192 95% 45%;
-  --primary: 46 100% 87%;
-  --primary-foreground: 191 100% 34%;
-  --secondary: 186 100% 89%;
-  --secondary-foreground: 191 100% 28%;
-  --muted: 191 100% 34%;
-  --muted-foreground: 186 55% 76%;
-  --accent: 46 100% 87%;
-  --accent-foreground: 191 100% 28%;
-  --destructive: 0 84% 60%;
+  --primary: 43 54% 54%;
+  --primary-foreground: 240 28% 5%;
+  --secondary: 240 28% 18%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 240 28% 18%;
+  --muted-foreground: 0 0% 70%;
+  --accent: 43 54% 54%;
+  --accent-foreground: 240 28% 5%;
+  --destructive: 358 68% 45%;
   --destructive-foreground: 0 0% 100%;
-  --border: 192 95% 45%;
-  --input: 191 100% 34%;
-  --ring: 46 100% 87%;
+  --border: 43 54% 54%;
+  --input: 240 28% 18%;
+  --ring: 43 54% 54%;
 }
 
 @layer base {
@@ -76,18 +74,21 @@
   }
   body {
     @apply font-sans antialiased;
-    background-color: #00A3C6;
+    background-color: var(--bg-main);
     color: #fff;
     margin: 0;
     padding: 0;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--app-font-heading);
   }
 }
 
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-.nav-active { color: #FFF0BB; }
-.nav-active svg { color: #FFF0BB; }
+.nav-active { color: var(--color-gold); }
+.nav-active svg { color: var(--color-gold); }
 
 /* Ticker animation */
 @keyframes ticker {
@@ -103,13 +104,14 @@
 
 /* Jackpot counter glow */
 .jackpot-num {
-  font-family: monospace;
-  background: linear-gradient(to bottom, #FFE566, #D4AF37, #B8860B);
+  font-family: var(--app-font-heading);
+  background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.05em;
+  text-shadow: 0 0 20px rgba(201,168,76,0.3);
 }
 
 /* Game card */
@@ -119,7 +121,13 @@
   position: relative;
   aspect-ratio: 3/4;
   cursor: pointer;
-  background: #005f78;
+  background: var(--bg-card);
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+.game-card:hover {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 15px rgba(201,168,76,0.15);
 }
 .game-card img {
   width: 100%;
@@ -134,8 +142,8 @@
   position: absolute;
   top: 4px;
   left: 4px;
-  background: rgba(0,0,0,0.65);
-  color: #fff;
+  background: rgba(201,168,76,0.85);
+  color: var(--bg-dark);
   font-size: 9px;
   font-weight: 700;
   padding: 1px 5px;
@@ -148,11 +156,12 @@
   position: absolute;
   top: 4px;
   right: 4px;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.3);
   font-size: 14px;
   line-height: 1;
+  transition: color 0.2s;
 }
-.fav-icon.active { color: #FFF0BB; }
+.fav-icon.active { color: var(--color-gold); }
 
 /* Game name */
 .game-name {
@@ -160,12 +169,12 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(transparent, rgba(0,0,0,0.85));
+  background: linear-gradient(transparent, rgba(13,13,26,0.95));
   color: #fff;
   font-size: 10px;
   font-weight: 500;
   text-align: center;
-  padding: 12px 4px 5px;
+  padding: 16px 4px 6px;
   line-height: 1.2;
 }
 
@@ -190,16 +199,16 @@
 
 /* Swiper dots */
 .swiper-dots { display: flex; gap: 4px; justify-content: center; margin-top: 6px; }
-.swiper-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.4); }
-.swiper-dot.active { background: #FFF0BB; width: 14px; border-radius: 3px; }
+.swiper-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.2); transition: all 0.2s; }
+.swiper-dot.active { background: var(--color-gold); width: 14px; border-radius: 3px; }
 
 /* Drawer overlay */
 .drawer-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.55);
+  background: rgba(0,0,0,0.7);
   z-index: 49;
 }
 
 /* Bottom tab active indicator */
-.bottom-tab-active { color: #FFF0BB; }
+.bottom-tab-active { color: var(--color-gold); }

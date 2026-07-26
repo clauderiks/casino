@@ -3,7 +3,6 @@ import { Link, useLocation } from "wouter";
 import { Layout } from "@/components/layout/layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { User, Lock, Eye, EyeOff } from "lucide-react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -38,14 +37,16 @@ export default function Login() {
     <Layout>
       <div className="p-6 pt-10 flex flex-col min-h-[calc(100vh-140px)]">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-card border border-primary/20 shadow-[0_0_15px_rgba(0,200,255,0.2)] mb-4">
-            <span className="text-4xl">🔥</span>
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[#1A1A2E] border border-[#C9A84C]/30 shadow-[0_0_20px_rgba(201,168,76,0.15)] mb-4">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="1.5">
+              <path d="M2 22h20M2 18l4-10 4 4 2-6 2 6 4-4 4 10H2z" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
           </div>
-          <h1 className="text-2xl font-black text-white mb-2">ĐĂNG NHẬP</h1>
-          <p className="text-sm text-muted-foreground">Chào mừng trở lại với HUYNH THUONG</p>
+          <h1 className="text-3xl font-black mb-2" style={{ fontFamily: "'Oswald', sans-serif", background: "linear-gradient(135deg, #C9A84C, #F5D787)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>ĐĂNG NHẬP</h1>
+          <p className="text-sm text-white/60">Chào mừng trở lại với HUYNH THUONG</p>
         </div>
 
-        <div className="bg-card border border-border/50 rounded-xl p-5 shadow-lg">
+        <div className="bg-[#1A1A2E] border border-[#C9A84C]/20 rounded-xl p-5 shadow-lg">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <FormField
@@ -55,16 +56,16 @@ export default function Login() {
                   <FormItem>
                     <FormControl>
                       <div className="relative">
-                        <User className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
+                        <User className="absolute left-3 top-3 h-5 w-5 text-white/40" />
                         <Input 
                           placeholder="Tên đăng nhập" 
-                          className="pl-10 h-12 bg-background border-border/50 focus:border-primary focus:ring-primary/20" 
+                          className="pl-10 h-12 bg-[#0D0D1A] border-[#C9A84C]/30 text-white placeholder:text-white/30 focus:border-[#C9A84C] focus:ring-[#C9A84C]/20" 
                           data-testid="input-username"
                           {...field} 
                         />
                       </div>
                     </FormControl>
-                    <FormMessage className="text-xs" />
+                    <FormMessage className="text-xs text-[#C0272D]" />
                   </FormItem>
                 )}
               />
@@ -76,42 +77,42 @@ export default function Login() {
                   <FormItem>
                     <FormControl>
                       <div className="relative">
-                        <Lock className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
+                        <Lock className="absolute left-3 top-3 h-5 w-5 text-white/40" />
                         <Input 
                           type={showPassword ? "text" : "password"} 
                           placeholder="Mật khẩu" 
-                          className="pl-10 pr-10 h-12 bg-background border-border/50 focus:border-primary focus:ring-primary/20" 
+                          className="pl-10 pr-10 h-12 bg-[#0D0D1A] border-[#C9A84C]/30 text-white placeholder:text-white/30 focus:border-[#C9A84C] focus:ring-[#C9A84C]/20" 
                           data-testid="input-password"
                           {...field} 
                         />
                         <button 
                           type="button" 
                           onClick={() => setShowPassword(!showPassword)}
-                          className="absolute right-3 top-3 text-muted-foreground hover:text-white"
+                          className="absolute right-3 top-3 text-white/40 hover:text-white"
                         >
                           {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
                         </button>
                       </div>
                     </FormControl>
-                    <FormMessage className="text-xs" />
+                    <FormMessage className="text-xs text-[#C0272D]" />
                   </FormItem>
                 )}
               />
 
               <div className="flex justify-end">
-                <a href="#" className="text-xs text-primary hover:underline">Quên mật khẩu?</a>
+                <a href="#" className="text-xs text-[#C9A84C] hover:underline">Quên mật khẩu?</a>
               </div>
               
-              <Button type="submit" className="w-full h-12 text-md font-bold bg-primary text-black hover:bg-primary/90 mt-2" data-testid="button-submit-login">
+              <Button type="submit" className="w-full h-12 text-md font-bold bg-gradient-to-br from-[#C9A84C] to-[#E8C96A] text-[#0D0D1A] hover:opacity-90 border-none mt-2" data-testid="button-submit-login">
                 ĐĂNG NHẬP
               </Button>
             </form>
           </Form>
         </div>
         
-        <div className="mt-8 text-center text-sm text-muted-foreground">
+        <div className="mt-8 text-center text-sm text-white/60">
           Chưa có tài khoản?{" "}
-          <Link href="/register" className="text-primary font-bold hover:underline">
+          <Link href="/register" className="text-[#C9A84C] font-bold hover:underline">
             Đăng ký ngay
           </Link>
         </div>

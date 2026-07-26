@@ -2,8 +2,6 @@ import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { AnimatePresence, motion } from "framer-motion";
 
-const LOGO = "https://xgamecdn.com/kp/202604/CVYR-kTgaqOgA_xM.png";
-
 /* ── Inline SVG Icons ─────────────────────────────────────────── */
 const IconHome = ({ size = 22, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill={color}>
@@ -58,22 +56,22 @@ const IconAgent = ({ size = 24, color = "currentColor" }) => (
     <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
   </svg>
 );
-const IconHot = ({ size = 20, color = "#FFF0BB" }) => (
+const IconHot = ({ size = 20, color = "#C9A84C" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill={color}>
     <path d="M13.5 0.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z"/>
   </svg>
 );
-const IconSlots = ({ size = 20, color = "#9DE0E6" }) => (
+const IconSlots = ({ size = 20, color = "rgba(255,255,255,0.4)" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill={color}>
     <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/>
   </svg>
 );
-const IconRecent = ({ size = 20, color = "#9DE0E6" }) => (
+const IconRecent = ({ size = 20, color = "rgba(255,255,255,0.4)" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill={color}>
     <path d="M13 3a9 9 0 0 0-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.954 8.954 0 0 0 13 21a9 9 0 0 0 0-18zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/>
   </svg>
 );
-const IconFavorite = ({ size = 20, color = "#9DE0E6" }) => (
+const IconFavorite = ({ size = 20, color = "rgba(255,255,255,0.4)" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill={color}>
     <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
   </svg>
@@ -156,17 +154,17 @@ const offerItems = [
 ];
 
 const gameTabs = [
-  { id: "hot",      Icon: IconHot,      label: "Hot",      activeColor: "#FFF0BB" },
-  { id: "slots",    Icon: IconSlots,    label: "Slots",    activeColor: "#FFF0BB" },
-  { id: "recent",   Icon: IconRecent,   label: "Recent",   activeColor: "#FFF0BB" },
-  { id: "favorite", Icon: IconFavorite, label: "Favorite", activeColor: "#FFF0BB" },
+  { id: "hot",      Icon: IconHot,      label: "Hot" },
+  { id: "slots",    Icon: IconSlots,    label: "Slots" },
+  { id: "recent",   Icon: IconRecent,   label: "Recent" },
+  { id: "favorite", Icon: IconFavorite, label: "Favorite" },
 ];
 
 const NavIcon = ({ Icon, label, href, active }: { Icon: React.FC<{size?:number;color?:string}>; label: string; href: string; active: boolean }) => (
   <Link href={href} style={{ flex: 1 }}>
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "7px 0", cursor: "pointer", gap: 2 }}>
-      <Icon size={22} color={active ? "#FFF0BB" : "#9DE0E6"} />
-      <span style={{ fontSize: 10, color: active ? "#FFF0BB" : "#9DE0E6", fontWeight: active ? 700 : 400, lineHeight: 1 }}>{label}</span>
+      <Icon size={22} color={active ? "#C9A84C" : "rgba(255,255,255,0.4)"} />
+      <span style={{ fontSize: 10, color: active ? "#C9A84C" : "rgba(255,255,255,0.4)", fontWeight: active ? 700 : 400, lineHeight: 1 }}>{label}</span>
     </div>
   </Link>
 );
@@ -182,40 +180,52 @@ export function Layout({ children, activeTab, onTabChange }: LayoutProps) {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
-    <div style={{ display: "flex", justifyContent: "center", minHeight: "100dvh", background: "#004d61" }}>
-      <div style={{ width: "100%", maxWidth: 480, background: "#00A3C6", minHeight: "100dvh", position: "relative", display: "flex", flexDirection: "column", overflow: "hidden" }}>
+    <div style={{ display: "flex", justifyContent: "center", minHeight: "100dvh", background: "#0D0D1A" }}>
+      <div style={{ width: "100%", maxWidth: 480, background: "#13131F", minHeight: "100dvh", position: "relative", display: "flex", flexDirection: "column", overflow: "hidden" }}>
 
         {/* ═══ HEADER ═══ */}
         <header style={{
           position: "sticky", top: 0, zIndex: 40,
-          background: "#0090AF",
+          background: "#0D0D1A",
           display: "flex", alignItems: "center", justifyContent: "space-between",
           padding: "0 12px", height: 46, flexShrink: 0,
-          borderBottom: "1px solid rgba(255,255,255,0.1)",
+          borderBottom: "1px solid rgba(201,168,76,0.3)",
         }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <button onClick={() => setDrawerOpen(true)} data-testid="button-menu"
-              style={{ background: "none", border: "none", cursor: "pointer", color: "#C5FAFF", padding: 4, display: "flex" }}>
+              style={{ background: "none", border: "none", cursor: "pointer", color: "rgba(255,255,255,0.6)", padding: 4, display: "flex" }}>
               <IconMenu size={22} />
             </button>
             <Link href="/">
-              <img src={LOGO} alt="HUYNH THUONG" style={{ height: 28, objectFit: "contain" }} />
+              <span style={{ 
+                fontFamily: "'Oswald', sans-serif", 
+                fontWeight: 700, 
+                fontSize: 18, 
+                background: "linear-gradient(135deg, #C9A84C, #F5D787)", 
+                WebkitBackgroundClip: "text", 
+                WebkitTextFillColor: "transparent", 
+                backgroundClip: "text", 
+                letterSpacing: "0.05em",
+                cursor: "pointer"
+              }}>
+                HUYNH THUONG
+              </span>
             </Link>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
             <Link href="/login">
               <button data-testid="button-login" style={{
-                background: "none", border: "1px solid #FFF0BB", borderRadius: 4,
-                color: "#FFF0BB", fontSize: 12, fontWeight: 600, padding: "4px 10px", cursor: "pointer",
+                background: "none", border: "1px solid #C9A84C", borderRadius: 4,
+                color: "#C9A84C", fontSize: 12, fontWeight: 600, padding: "4px 10px", cursor: "pointer",
               }}>Đăng nhập</button>
             </Link>
             <Link href="/register">
               <button data-testid="button-register" style={{
-                background: "#FFF0BB", border: "none", borderRadius: 4,
-                color: "#0090AF", fontSize: 12, fontWeight: 700, padding: "4px 10px", cursor: "pointer",
+                background: "#C9A84C", border: "none", borderRadius: 4,
+                color: "#0D0D1A", fontSize: 12, fontWeight: 700, padding: "4px 10px", cursor: "pointer",
               }}>Đăng ký</button>
             </Link>
-            <button data-testid="button-search" style={{ background: "none", border: "none", cursor: "pointer", color: "#C5FAFF", display: "flex", padding: 2 }}>
+            <button data-testid="button-search" style={{ background: "none", border: "none", cursor: "pointer", color: "rgba(255,255,255,0.6)", display: "flex", padding: 2 }}>
               <IconSearch size={18} />
             </button>
             {/* VN flag as SVG */}
@@ -234,7 +244,7 @@ export function Layout({ children, activeTab, onTabChange }: LayoutProps) {
             <>
               <motion.div key="ov"
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.6)", zIndex: 49 }}
+                style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.7)", zIndex: 49 }}
                 onClick={() => setDrawerOpen(false)}
               />
               <motion.div key="dr"
@@ -242,56 +252,57 @@ export function Layout({ children, activeTab, onTabChange }: LayoutProps) {
                 transition={{ type: "tween", duration: 0.22 }}
                 style={{
                   position: "fixed", top: 0, bottom: 0, left: 0,
-                  width: "78%", maxWidth: 300, background: "#007a93",
+                  width: "78%", maxWidth: 300, background: "#0D0D1A",
                   zIndex: 50, overflowY: "auto", display: "flex", flexDirection: "column",
                 }}
               >
                 {/* Drawer head */}
-                <div style={{ background: "#006880", padding: "14px 14px 10px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                <div style={{ background: "#1A1A2E", padding: "14px 14px 10px", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(201,168,76,0.2)" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                    <div style={{ width: 38, height: 38, borderRadius: "50%", background: "#00A3C6", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                      <IconUser size={20} color="#C5FAFF" />
+                    <div style={{ width: 38, height: 38, borderRadius: "50%", background: "#13131F", display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid rgba(201,168,76,0.3)" }}>
+                      <IconUser size={20} color="#C9A84C" />
                     </div>
                     <div>
                       <div style={{ color: "#fff", fontSize: 13, fontWeight: 600 }}>Khách</div>
-                      <div style={{ color: "#FFF0BB", fontSize: 11, cursor: "pointer" }}>
+                      <div style={{ color: "#C9A84C", fontSize: 11, cursor: "pointer" }}>
                         <Link href="/login" onClick={() => setDrawerOpen(false)}>Đăng nhập/Đăng ký &gt;</Link>
                       </div>
                     </div>
                   </div>
-                  <button onClick={() => setDrawerOpen(false)} style={{ background: "none", border: "none", cursor: "pointer", color: "#C5FAFF" }}>
+                  <button onClick={() => setDrawerOpen(false)} style={{ background: "none", border: "none", cursor: "pointer", color: "rgba(255,255,255,0.6)" }}>
                     <IconClose size={20} />
                   </button>
                 </div>
 
                 {/* Game Category Tabs */}
-                <div style={{ background: "#006880", padding: "8px 10px", display: "flex", gap: 6, borderBottom: "1px solid rgba(255,255,255,0.12)" }}>
+                <div style={{ background: "#1A1A2E", padding: "8px 10px", display: "flex", gap: 6, borderBottom: "1px solid rgba(201,168,76,0.2)" }}>
                   {gameTabs.map(t => {
                     const isActive = activeTab === t.id;
                     return (
                       <button key={t.id} onClick={() => { onTabChange?.(t.id); setDrawerOpen(false); }}
                         style={{
-                          flex: 1, background: isActive ? "rgba(255,240,187,0.15)" : "rgba(0,0,0,0.15)",
-                          border: "none", borderRadius: 6, padding: "7px 2px", cursor: "pointer",
+                          flex: 1, background: isActive ? "rgba(201,168,76,0.15)" : "rgba(255,255,255,0.05)",
+                          border: isActive ? "1px solid rgba(201,168,76,0.3)" : "1px solid transparent", 
+                          borderRadius: 6, padding: "7px 2px", cursor: "pointer",
                           display: "flex", flexDirection: "column", alignItems: "center", gap: 3,
                         }}
                       >
-                        <t.Icon size={20} color={isActive ? "#FFF0BB" : "#9DE0E6"} />
-                        <span style={{ fontSize: 10, color: isActive ? "#FFF0BB" : "#9DE0E6", fontWeight: isActive ? 700 : 400 }}>{t.label}</span>
+                        <t.Icon size={20} color={isActive ? "#C9A84C" : "rgba(255,255,255,0.4)"} />
+                        <span style={{ fontSize: 10, color: isActive ? "#C9A84C" : "rgba(255,255,255,0.4)", fontWeight: isActive ? 700 : 400 }}>{t.label}</span>
                       </button>
                     );
                   })}
                 </div>
 
                 {/* Bet Records & Agent */}
-                <div style={{ padding: "10px 12px", borderBottom: "1px solid rgba(255,255,255,0.12)" }}>
+                <div style={{ padding: "10px 12px", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
                   <div style={{ display: "flex", gap: 8 }}>
                     {[
                       { Icon: IconBetRecords, label: "Lịch sử cược" },
                       { Icon: IconAgent,      label: "Đại lý" },
                     ].map(({ Icon, label }) => (
-                      <button key={label} style={{ flex: 1, background: "rgba(0,0,0,0.18)", border: "none", borderRadius: 8, padding: "10px 8px", cursor: "pointer", display: "flex", alignItems: "center", gap: 8, color: "#fff" }}>
-                        <Icon size={22} color="#C5FAFF" />
+                      <button key={label} style={{ flex: 1, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 8, padding: "10px 8px", cursor: "pointer", display: "flex", alignItems: "center", gap: 8, color: "#fff" }}>
+                        <Icon size={22} color="#C9A84C" />
                         <span style={{ fontSize: 12, color: "#fff" }}>{label}</span>
                       </button>
                     ))}
@@ -299,12 +310,12 @@ export function Layout({ children, activeTab, onTabChange }: LayoutProps) {
                 </div>
 
                 {/* Offer Center */}
-                <div style={{ padding: "10px 12px", borderBottom: "1px solid rgba(255,255,255,0.12)" }}>
-                  <div style={{ fontSize: 12, color: "#C5FAFF", fontWeight: 600, marginBottom: 8 }}>Trung tâm ưu đãi</div>
+                <div style={{ padding: "10px 12px", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
+                  <div style={{ fontSize: 12, color: "rgba(255,255,255,0.6)", fontWeight: 600, marginBottom: 8 }}>Trung tâm ưu đãi</div>
                   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
                     {offerItems.map((item, i) => (
                       <button key={i} style={{
-                        background: "rgba(0,0,0,0.18)", border: "none", borderRadius: 8,
+                        background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 8,
                         padding: "8px 8px", cursor: "pointer",
                         display: "flex", alignItems: "center", gap: 8, color: "#fff",
                       }}>
@@ -319,7 +330,7 @@ export function Layout({ children, activeTab, onTabChange }: LayoutProps) {
 
                 {/* Bottom links */}
                 <div style={{ marginTop: "auto", padding: "12px 12px 24px" }}>
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px 12px", background: "rgba(0,0,0,0.18)", borderRadius: 8, marginBottom: 12 }}>
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px 12px", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 8, marginBottom: 12 }}>
                     <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                       <svg viewBox="0 0 30 20" width="22" height="16" style={{ borderRadius: 2 }}>
                         <rect width="30" height="20" fill="#DA251D"/>
@@ -331,13 +342,13 @@ export function Layout({ children, activeTab, onTabChange }: LayoutProps) {
                   </div>
                   <div style={{ display: "flex", justifyContent: "space-around" }}>
                     {[
-                      { label: "CSKH", color: "#4AC8E3", icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="#4AC8E3"><path d="M12 1c-4.97 0-9 4.03-9 9v7c0 1.66 1.34 3 3 3h3v-8H5v-2c0-3.87 3.13-7 7-7s7 3.13 7 7v2h-4v8h3c1.66 0 3-1.34 3-3v-7c0-4.97-4.03-9-9-9z"/></svg> },
-                      { label: "FAQ",  color: "#FFF0BB", icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="#FFF0BB"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg> },
-                      { label: "Giới thiệu", color: "#9DE0E6", icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="#9DE0E6"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg> },
+                      { label: "CSKH", color: "rgba(255,255,255,0.4)", icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="rgba(255,255,255,0.4)"><path d="M12 1c-4.97 0-9 4.03-9 9v7c0 1.66 1.34 3 3 3h3v-8H5v-2c0-3.87 3.13-7 7-7s7 3.13 7 7v2h-4v8h3c1.66 0 3-1.34 3-3v-7c0-4.97-4.03-9-9-9z"/></svg> },
+                      { label: "FAQ",  color: "rgba(255,255,255,0.4)", icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="rgba(255,255,255,0.4)"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg> },
+                      { label: "Giới thiệu", color: "rgba(255,255,255,0.4)", icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="rgba(255,255,255,0.4)"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg> },
                     ].map((item, i) => (
                       <button key={i} style={{ background: "none", border: "none", cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
                         {item.icon}
-                        <span style={{ fontSize: 10, color: "#9DE0E6" }}>{item.label}</span>
+                        <span style={{ fontSize: 10, color: item.color }}>{item.label}</span>
                       </button>
                     ))}
                   </div>
@@ -356,8 +367,8 @@ export function Layout({ children, activeTab, onTabChange }: LayoutProps) {
         <nav style={{
           position: "fixed", bottom: 0, left: "50%", transform: "translateX(-50%)",
           width: "100%", maxWidth: 480,
-          background: "#0090AF",
-          borderTop: "1px solid #0BB5D9",
+          background: "#0D0D1A",
+          borderTop: "1px solid rgba(201,168,76,0.3)",
           zIndex: 40, display: "flex", alignItems: "center",
         }}>
           <NavIcon Icon={IconHome}    label="Trang chủ" href="/"           active={location === "/"} />
@@ -369,14 +380,14 @@ export function Layout({ children, activeTab, onTabChange }: LayoutProps) {
               <div data-testid="nav-deposit" style={{ display: "flex", flexDirection: "column", alignItems: "center", cursor: "pointer", marginTop: -18 }}>
                 <div style={{
                   width: 50, height: 50, borderRadius: "50%",
-                  background: "linear-gradient(135deg, #FFE566, #D4AF37)",
-                  border: "3px solid #0090AF",
+                  background: "linear-gradient(135deg, #C9A84C, #E8C96A)",
+                  border: "3px solid #0D0D1A",
                   display: "flex", alignItems: "center", justifyContent: "center",
-                  boxShadow: "0 2px 12px rgba(255,240,187,0.5)",
+                  boxShadow: "0 2px 15px rgba(201,168,76,0.4)",
                 }}>
-                  <IconDeposit size={26} color="#0090AF" />
+                  <IconDeposit size={26} color="#0D0D1A" />
                 </div>
-                <span style={{ fontSize: 10, color: "#9DE0E6", marginTop: 2, fontWeight: 400 }}>Nạp tiền</span>
+                <span style={{ fontSize: 10, color: "rgba(255,255,255,0.4)", marginTop: 2, fontWeight: 400 }}>Nạp tiền</span>
               </div>
             </Link>
           </div>
