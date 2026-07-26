@@ -202,6 +202,24 @@
 .swiper-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.2); transition: all 0.2s; }
 .swiper-dot.active { background: var(--color-gold); width: 14px; border-radius: 3px; }
 
+/* Game play overlay on hover */
+.game-play-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s ease, background 0.2s ease;
+  cursor: pointer;
+}
+.game-card:hover .game-play-overlay,
+.game-card:active .game-play-overlay {
+  opacity: 1;
+  background: rgba(0,0,0,0.5);
+}
+
 /* Drawer overlay */
 .drawer-overlay {
   position: fixed;

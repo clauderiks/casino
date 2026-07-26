@@ -11,65 +11,124 @@ const banners = [
   `${CDN}/kp/202604/2Q0EpeG-e8_uO1mG.png`,
 ];
 
-const hotGames = [
-  { id: 1, name: "Ways of the Qilin",       provider: "PG",  img: `${CDN}/game/OM/g/PGC/3/31047/0.png`,        fav: true  },
-  { id: 2, name: "Rise of Apollo",           provider: "PG",  img: `${CDN}/game/OM/g/PGC/3/31048/0.png`,        fav: false },
-  { id: 3, name: "Ganesha Fortune",          provider: "PG",  img: `${CDN}/game/OM/g/PGC/3/31042/0.png`,        fav: true  },
-  { id: 4, name: "Egypt's Book of Mystery",  provider: "PG",  img: `${CDN}/game/OM/g/PGC/3/31040/0.png`,        fav: false },
-  { id: 5, name: "Double Happiness",         provider: "PG",  img: `${CDN}/game/OM/g/PGC/3/31033/0.png`,        fav: false },
-  { id: 6, name: "Phoenix Rises",            provider: "PG",  img: `${CDN}/game/OM/g/PGC/3/31031/0.png`,        fav: true  },
-  { id: 7, name: "Mahjong Ways",             provider: "PG",  img: `${CDN}/game/OM/g/PGC/3/31030/0.png`,        fav: true  },
-  { id: 8, name: "Lucky Neko",               provider: "PG",  img: `${CDN}/game/OM/g/PGC/3/31026/0.png`,        fav: false },
-  { id: 9, name: "Medusa 2",                 provider: "PG",  img: `${CDN}/game/OM/g/PG/3/1508783/0.png`,       fav: false },
+/* ── GAME DATA by hall ─────────────────────────────────────── */
+
+const jiliGames = [
+  { id: 101, name: "Fortune Gems",      provider: "JILI", img: `${CDN}/game/OM/g/JL/3/200/0.png` },
+  { id: 102, name: "Super Ace",         provider: "JILI", img: `${CDN}/game/OM/g/JL/3/204/0.png` },
+  { id: 103, name: "Boxing King",       provider: "JILI", img: `${CDN}/game/OM/g/JL/3/208/0.png` },
+  { id: 104, name: "Mega Ace",          provider: "JILI", img: `${CDN}/game/OM/g/JL/3/209/0.png` },
+  { id: 105, name: "Lucky Coming",      provider: "JILI", img: `${CDN}/game/OM/g/JL/3/214/0.png` },
+  { id: 106, name: "Samba",             provider: "JILI", img: `${CDN}/game/OM/g/JL/3/216/0.png` },
+  { id: 107, name: "Dragon Treasure",   provider: "JILI", img: `${CDN}/game/OM/g/JL/3/217/0.png` },
+  { id: 108, name: "Golden Empire",     provider: "JILI", img: `${CDN}/game/OM/g/JL/3/223/0.png` },
+  { id: 109, name: "Crazy FaFaFa",      provider: "JILI", img: `${CDN}/game/OM/g/JL/3/224/0.png` },
+  { id: 110, name: "Money Coming",      provider: "JILI", img: `${CDN}/game/OM/g/JL/3/225/0.png` },
+  { id: 111, name: "Wild Ace",          provider: "JILI", img: `${CDN}/game/OM/g/JL/3/226/0.png` },
+  { id: 112, name: "Charge Buffalo",    provider: "JILI", img: `${CDN}/game/OM/g/JL/3/228/0.png` },
+  { id: 113, name: "RomaX",             provider: "JILI", img: `${CDN}/game/OM/g/JL/3/229/0.png` },
+  { id: 114, name: "Jungle King",       provider: "JILI", img: `${CDN}/game/OM/g/JL/3/230/0.png` },
+  { id: 115, name: "Fortune Tree",      provider: "JILI", img: `${CDN}/game/OM/g/JL/3/232/0.png` },
 ];
 
-const slotsGames = [
-  { id: 10, name: "Battleground Royale",     provider: "PG",  img: `${CDN}/game/OM/g/PG/3/1804577/0.png`,       fav: false },
-  { id: 11, name: "Jungle Delight",          provider: "JL",  img: `${CDN}/game/OM/g/JL/3/463/0.png`,           fav: false },
-  { id: 12, name: "Caishen Wins",            provider: "NJL", img: `${CDN}/game/OM/g/NJL/3/31226/0.png`,        fav: true  },
-  { id: 13, name: "JL Treasure",             provider: "JL",  img: `${CDN}/game/OM/g/JL/3/263/0.png`,           fav: false },
-  { id: 14, name: "Money Cat",               provider: "NJL", img: `${CDN}/game/OM/g/NJL/3/31262/0.png`,        fav: false },
-  { id: 15, name: "Lucky Tiger",             provider: "PP",  img: `${CDN}/game/OM/g/PP/3/vs5luckytig/0.png`,   fav: false },
-  { id: 16, name: "Fortune Dragon",          provider: "PG",  img: `${CDN}/game/OM/g/PG/3/1879752/0.png`,       fav: true  },
-  { id: 17, name: "Zeus vs Hades",           provider: "PP",  img: `${CDN}/game/OM/g/PP/3/vs15godsofwar/0.png`, fav: false },
-  { id: 18, name: "Rainbow Gold",            provider: "PP",  img: `${CDN}/game/OM/g/PP/3/vs20rainbowrsh/0.png`,fav: false },
-  { id: 19, name: "Sic Bo",                  provider: "TD",  img: `${CDN}/game/OM/g/TD/3/87/0.png`,            fav: false },
-  { id: 20, name: "Dragon Gold",             provider: "NJL", img: `${CDN}/game/OM/g/NJL/3/31219/0.png`,        fav: false },
-  { id: 21, name: "Wild Bandits",            provider: "PP",  img: `${CDN}/game/OM/g/PP/3/vs25wildies/0.png`,   fav: false },
-  { id: 22, name: "Mahjong Wins Bonus",      provider: "PP",  img: `${CDN}/game/OM/g/PP/3/vs1024mjwinbns/0.png`,fav: true  },
-  { id: 23, name: "JDB Treasure",            provider: "JDB", img: `${CDN}/game/OM/g/JDB/3/1404500/0.png`,      fav: false },
-  { id: 24, name: "Fortune Ox",             provider: "WG",  img: `${CDN}/game/OM/g/WG/3/41015/0.png`,         fav: false },
+const pgGames = [
+  { id: 201, name: "Ways of the Qilin",      provider: "PG", img: `${CDN}/game/OM/g/PGC/3/31047/0.png` },
+  { id: 202, name: "Rise of Apollo",         provider: "PG", img: `${CDN}/game/OM/g/PGC/3/31048/0.png` },
+  { id: 203, name: "Ganesha Fortune",        provider: "PG", img: `${CDN}/game/OM/g/PGC/3/31042/0.png` },
+  { id: 204, name: "Egypt's Book of Mystery",provider: "PG", img: `${CDN}/game/OM/g/PGC/3/31040/0.png` },
+  { id: 205, name: "Double Happiness",       provider: "PG", img: `${CDN}/game/OM/g/PGC/3/31033/0.png` },
+  { id: 206, name: "Phoenix Rises",          provider: "PG", img: `${CDN}/game/OM/g/PGC/3/31031/0.png` },
+  { id: 207, name: "Mahjong Ways",           provider: "PG", img: `${CDN}/game/OM/g/PGC/3/31030/0.png` },
+  { id: 208, name: "Lucky Neko",             provider: "PG", img: `${CDN}/game/OM/g/PGC/3/31026/0.png` },
+  { id: 209, name: "Treasures of Aztec",     provider: "PG", img: `${CDN}/game/OM/g/PGC/3/31007/0.png` },
+  { id: 210, name: "Candy Burst",            provider: "PG", img: `${CDN}/game/OM/g/PGC/3/31009/0.png` },
+  { id: 211, name: "Dragon Tiger Luck",      provider: "PG", img: `${CDN}/game/OM/g/PGC/3/31010/0.png` },
+  { id: 212, name: "Prosperity Fortune Tree",provider: "PG", img: `${CDN}/game/OM/g/PGC/3/31011/0.png` },
+  { id: 213, name: "Gem Saviour Sword",      provider: "PG", img: `${CDN}/game/OM/g/PGC/3/31012/0.png` },
+  { id: 214, name: "Shaolin Soccer",         provider: "PG", img: `${CDN}/game/OM/g/PGC/3/31013/0.png` },
+  { id: 215, name: "Hood vs Wolf",           provider: "PG", img: `${CDN}/game/OM/g/PGC/3/31014/0.png` },
 ];
 
-/* SVG icons for tabs — no external images needed */
-const TabIcons: Record<string, (active: boolean) => React.ReactNode> = {
-  hot: (a) => (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill={a ? "#C9A84C" : "rgba(255,255,255,0.4)"}>
-      <path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z"/>
-    </svg>
-  ),
-  slots: (a) => (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill={a ? "#C9A84C" : "rgba(255,255,255,0.4)"}>
-      <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/>
-    </svg>
-  ),
-  recent: (a) => (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill={a ? "#C9A84C" : "rgba(255,255,255,0.4)"}>
-      <path d="M13 3a9 9 0 0 0-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.954 8.954 0 0 0 13 21a9 9 0 0 0 0-18zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/>
-    </svg>
-  ),
-  favorite: (a) => (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill={a ? "#C9A84C" : "rgba(255,255,255,0.4)"}>
-      <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
-    </svg>
-  ),
-};
+const wgGames = [
+  { id: 301, name: "Fortune Ox",       provider: "WG", img: `${CDN}/game/OM/g/WG/3/41015/0.png` },
+  { id: 302, name: "Dragon Hatch",     provider: "WG", img: `${CDN}/game/OM/g/WG/3/41003/0.png` },
+  { id: 303, name: "Queen of Bounty",  provider: "WG", img: `${CDN}/game/OM/g/WG/3/41004/0.png` },
+  { id: 304, name: "Galactic Gems",    provider: "WG", img: `${CDN}/game/OM/g/WG/3/41005/0.png` },
+  { id: 305, name: "Piggy Gold",       provider: "WG", img: `${CDN}/game/OM/g/WG/3/41007/0.png` },
+  { id: 306, name: "Leprechaun Riches",provider: "WG", img: `${CDN}/game/OM/g/WG/3/41010/0.png` },
+  { id: 307, name: "Wild Fireworks",   provider: "WG", img: `${CDN}/game/OM/g/WG/3/41012/0.png` },
+  { id: 308, name: "Buffalo Win",      provider: "WG", img: `${CDN}/game/OM/g/WG/3/41016/0.png` },
+  { id: 309, name: "Golden Dragon",    provider: "WG", img: `${CDN}/game/OM/g/WG/3/41020/0.png` },
+  { id: 310, name: "Jungle Delight",   provider: "WG", img: `${CDN}/game/OM/g/WG/3/41023/0.png` },
+  { id: 311, name: "Aztec Temple",     provider: "WG", img: `${CDN}/game/OM/g/WG/3/41025/0.png` },
+  { id: 312, name: "Ocean Riches",     provider: "WG", img: `${CDN}/game/OM/g/WG/3/41034/0.png` },
+  { id: 313, name: "Lucky Zodiac",     provider: "WG", img: `${CDN}/game/OM/g/WG/3/41035/0.png` },
+  { id: 314, name: "Panda's Fortune",  provider: "WG", img: `${CDN}/game/OM/g/WG/3/41037/0.png` },
+  { id: 315, name: "Gem Queen",        provider: "WG", img: `${CDN}/game/OM/g/WG/3/41038/0.png` },
+];
 
-const tabs = [
-  { id: "hot",      label: "Hot"      },
-  { id: "slots",    label: "Slots"    },
-  { id: "recent",   label: "Recent"   },
-  { id: "favorite", label: "Favorite" },
+const fcGames = [
+  { id: 401, name: "Caishen Wins",     provider: "FC",  img: `${CDN}/game/OM/g/NJL/3/31226/0.png` },
+  { id: 402, name: "Dragon Gold",      provider: "FC",  img: `${CDN}/game/OM/g/NJL/3/31219/0.png` },
+  { id: 403, name: "Money Cat",        provider: "FC",  img: `${CDN}/game/OM/g/NJL/3/31262/0.png` },
+  { id: 404, name: "JL Treasure",      provider: "FC",  img: `${CDN}/game/OM/g/JL/3/263/0.png` },
+  { id: 405, name: "Happy Fishing",    provider: "FC",  img: `${CDN}/game/OM/g/JL/3/403/0.png` },
+  { id: 406, name: "Fortune Gems 2",   provider: "FC",  img: `${CDN}/game/OM/g/JL/3/460/0.png` },
+  { id: 407, name: "Dragon Fortune",   provider: "FC",  img: `${CDN}/game/OM/g/JL/3/461/0.png` },
+  { id: 408, name: "Wild Bandits",     provider: "FC",  img: `${CDN}/game/OM/g/JL/3/324/0.png` },
+  { id: 409, name: "Panda Panda",      provider: "FC",  img: `${CDN}/game/OM/g/JL/3/307/0.png` },
+  { id: 410, name: "Jungle Fishing",   provider: "FC",  img: `${CDN}/game/OM/g/JL/3/300/0.png` },
+  { id: 411, name: "King of Slots",    provider: "FC",  img: `${CDN}/game/OM/g/JL/3/301/0.png` },
+  { id: 412, name: "Lucky Strike",     provider: "FC",  img: `${CDN}/game/OM/g/JL/3/302/0.png` },
+  { id: 413, name: "Golden Toad",      provider: "FC",  img: `${CDN}/game/OM/g/JL/3/303/0.png` },
+  { id: 414, name: "Neko Party",       provider: "FC",  img: `${CDN}/game/OM/g/JL/3/297/0.png` },
+  { id: 415, name: "Spade Hunter",     provider: "FC",  img: `${CDN}/game/OM/g/JL/3/299/0.png` },
+];
+
+const jdbGames = [
+  { id: 501, name: "Monkey King",      provider: "JDB", img: `${CDN}/game/OM/g/JDB/3/1404100/0.png` },
+  { id: 502, name: "Sea Emperor",      provider: "JDB", img: `${CDN}/game/OM/g/JDB/3/1404200/0.png` },
+  { id: 503, name: "Lucky 777",        provider: "JDB", img: `${CDN}/game/OM/g/JDB/3/1404300/0.png` },
+  { id: 504, name: "Fishing Master",   provider: "JDB", img: `${CDN}/game/OM/g/JDB/3/1404400/0.png` },
+  { id: 505, name: "JDB Treasure",     provider: "JDB", img: `${CDN}/game/OM/g/JDB/3/1404500/0.png` },
+  { id: 506, name: "Golden Dragon",    provider: "JDB", img: `${CDN}/game/OM/g/JDB/3/1404600/0.png` },
+  { id: 507, name: "Magic Lamp",       provider: "JDB", img: `${CDN}/game/OM/g/JDB/3/1404700/0.png` },
+  { id: 508, name: "Fortune God",      provider: "JDB", img: `${CDN}/game/OM/g/JDB/3/1404800/0.png` },
+  { id: 509, name: "Dragon Palace",    provider: "JDB", img: `${CDN}/game/OM/g/JDB/3/1405000/0.png` },
+  { id: 510, name: "Wild Safari",      provider: "JDB", img: `${CDN}/game/OM/g/JDB/3/1405100/0.png` },
+  { id: 511, name: "Rooster Warrior",  provider: "JDB", img: `${CDN}/game/OM/g/JDB/3/1405200/0.png` },
+  { id: 512, name: "Happy Rich Year",  provider: "JDB", img: `${CDN}/game/OM/g/JDB/3/1403300/0.png` },
+  { id: 513, name: "Dragon Ball",      provider: "JDB", img: `${CDN}/game/OM/g/JDB/3/1403400/0.png` },
+  { id: 514, name: "Tiger Warrior",    provider: "JDB", img: `${CDN}/game/OM/g/JDB/3/1403500/0.png` },
+  { id: 515, name: "Treasure Hunt",    provider: "JDB", img: `${CDN}/game/OM/g/JDB/3/1403600/0.png` },
+];
+
+const ppGames = [
+  { id: 601, name: "Gates of Olympus", provider: "PP", img: `${CDN}/game/OM/g/PP/3/vs20pbonanza/0.png` },
+  { id: 602, name: "Starlight Princess",provider: "PP", img: `${CDN}/game/OM/g/PP/3/vs20starlightx/0.png` },
+  { id: 603, name: "Sweet Bonanza",     provider: "PP", img: `${CDN}/game/OM/g/PP/3/vs20pbonanza/0.png` },
+  { id: 604, name: "Big Bass Bonanza",  provider: "PP", img: `${CDN}/game/OM/g/PP/3/vs10txbigbass/0.png` },
+  { id: 605, name: "Dog House Megaways",provider: "PP", img: `${CDN}/game/OM/g/PP/3/vs20doghouse/0.png` },
+  { id: 606, name: "Fruit Party",       provider: "PP", img: `${CDN}/game/OM/g/PP/3/vs20fruitparty/0.png` },
+  { id: 607, name: "Zeus vs Hades",     provider: "PP", img: `${CDN}/game/OM/g/PP/3/vs15godsofwar/0.png` },
+  { id: 608, name: "Lucky Tiger",       provider: "PP", img: `${CDN}/game/OM/g/PP/3/vs5luckytig/0.png` },
+  { id: 609, name: "Pyramid Bonanza",   provider: "PP", img: `${CDN}/game/OM/g/PP/3/vs25pyramid/0.png` },
+  { id: 610, name: "Cleopatra's Gold",  provider: "PP", img: `${CDN}/game/OM/g/PP/3/vs40cleoeye/0.png` },
+  { id: 611, name: "Wild Bandito",      provider: "PP", img: `${CDN}/game/OM/g/PP/3/vs25wildies/0.png` },
+  { id: 612, name: "Mahjong Wins Bonus",provider: "PP", img: `${CDN}/game/OM/g/PP/3/vs1024mjwinbns/0.png` },
+  { id: 613, name: "Rainbow Gold",      provider: "PP", img: `${CDN}/game/OM/g/PP/3/vs20rainbowrsh/0.png` },
+  { id: 614, name: "Gold Fish",         provider: "PP", img: `${CDN}/game/OM/g/PP/3/vs10goldfish/0.png` },
+  { id: 615, name: "Sugar Rush",        provider: "PP", img: `${CDN}/game/OM/g/PP/3/vs20sugarrush/0.png` },
+];
+
+/* ── HALL TABS ─────────────────────────────────────────────── */
+const halls = [
+  { id: "jili", label: "JILI",   games: jiliGames, color: "#E8B84B" },
+  { id: "pg",   label: "PG",     games: pgGames,   color: "#E8B84B" },
+  { id: "wg",   label: "WG",     games: wgGames,   color: "#E8B84B" },
+  { id: "fc",   label: "FC",     games: fcGames,   color: "#E8B84B" },
+  { id: "jdb",  label: "JDB",    games: jdbGames,  color: "#E8B84B" },
+  { id: "pp",   label: "PP",     games: ppGames,   color: "#E8B84B" },
 ];
 
 const JACKPOT_BG = `${CDN}/kp/202604/Od2BpfvOItlrtyuv.png`;
@@ -77,17 +136,17 @@ const JACKPOT_BG = `${CDN}/kp/202604/Od2BpfvOItlrtyuv.png`;
 export default function Home() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, dragFree: false });
   const [activeIdx, setActiveIdx] = useState(0);
-  const [activeTab, setActiveTab] = useState("hot");
+  const [activeHall, setActiveHall] = useState("jili");
   const [jackpot, setJackpot] = useState(621100219);
-  const [favorites, setFavorites] = useState<Set<number>>(new Set([1, 3, 6, 7, 12, 16, 22]));
-  const tickerRef = useRef<HTMLDivElement>(null);
+  const [favorites, setFavorites] = useState<Set<number>>(new Set([101, 203, 301, 501, 601]));
+  const [gameTab, setGameTab] = useState<"all" | "fav">("all");
 
   /* Auto-slide banner */
   useEffect(() => {
     if (!emblaApi) return;
     const onSelect = () => setActiveIdx(emblaApi.selectedScrollSnap());
     emblaApi.on("select", onSelect);
-    const iv = setInterval(() => emblaApi.scrollNext(), 3000);
+    const iv = setInterval(() => emblaApi.scrollNext(), 3200);
     return () => { clearInterval(iv); emblaApi.off("select", onSelect); };
   }, [emblaApi]);
 
@@ -107,24 +166,21 @@ export default function Home() {
     });
   };
 
-  const displayGames = activeTab === "hot" ? hotGames
-    : activeTab === "slots" ? slotsGames
-    : activeTab === "favorite" ? [...hotGames, ...slotsGames].filter(g => favorites.has(g.id))
-    : hotGames.slice(0, 6);
+  const currentHall = halls.find(h => h.id === activeHall)!;
+  const displayGames = gameTab === "fav"
+    ? halls.flatMap(h => h.games).filter(g => favorites.has(g.id))
+    : currentHall.games;
 
   return (
-    <Layout activeTab={activeTab} onTabChange={setActiveTab}>
-
-      {/* ═══ BANNER CAROUSEL ═══ */}
+    <Layout>
+      {/* ═══ BANNER ═══ */}
       <div style={{ overflow: "hidden", position: "relative" }} ref={emblaRef}>
         <div style={{ display: "flex" }}>
           {banners.map((src, i) => (
             <div key={i} style={{ flex: "0 0 100%", minWidth: 0 }}>
-              <img
-                src={src} alt={`Banner ${i + 1}`}
+              <img src={src} alt={`Banner ${i + 1}`}
                 style={{ width: "100%", aspectRatio: "21/9", objectFit: "cover", display: "block" }}
-                loading={i === 0 ? "eager" : "lazy"}
-              />
+                loading={i === 0 ? "eager" : "lazy"} />
             </div>
           ))}
         </div>
@@ -138,74 +194,108 @@ export default function Home() {
       </div>
 
       {/* ═══ ANNOUNCEMENT TICKER ═══ */}
-      <div style={{ display: "flex", alignItems: "center", background: "rgba(201,168,76,0.08)", padding: "5px 10px", gap: 6, overflow: "hidden" }}>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="#C9A84C" style={{ flexShrink: 0 }}><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+      <div style={{ display: "flex", alignItems: "center", background: "rgba(201,168,76,0.08)", padding: "5px 10px", gap: 6, overflow: "hidden", borderTop: "1px solid rgba(201,168,76,0.15)", borderBottom: "1px solid rgba(201,168,76,0.15)" }}>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#C9A84C" style={{ flexShrink: 0 }}><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
         <div style={{ flex: 1, overflow: "hidden" }} className="ticker-wrap">
-          <span className="ticker-content" style={{ fontSize: 12, color: "#fff" }}>
-            Chào mừng bạn đến với HUYNH THUONG! Casino hoàng gia, đẳng cấp quốc tế. Nạp lần đầu nhận 150% thưởng lên đến 5,000,000 VNĐ. Chúc bạn một ngày chơi game may mắn!
+          <span className="ticker-content" style={{ fontSize: 12, color: "#e0c97a" }}>
+            Chuc mung ban da den voi HUYNH THUONG! Nap lan dau nhan 150% thuong len den 5,000,000 VND. Mung ngay khai truong song bai va nhan ngay uu dai dac biet. Chuc cac ban choi game vui ve va may man!
           </span>
         </div>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="#C9A84C" style={{ flexShrink: 0 }}><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#C9A84C" style={{ flexShrink: 0 }}><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
       </div>
 
-      {/* ═══ GAME CATEGORY TABS ═══ */}
-      <div style={{
-        position: "sticky", top: 0, zIndex: 30,
-        background: "#0D0D1A",
-        display: "flex", borderBottom: "1px solid rgba(201,168,76,0.3)",
-      }}>
-        {tabs.map(t => (
-          <button
-            key={t.id}
-            data-testid={`tab-${t.id}`}
-            onClick={() => setActiveTab(t.id)}
-            style={{
-              flex: 1, background: "none", border: "none", cursor: "pointer",
-              padding: "8px 4px 6px",
-              display: "flex", flexDirection: "column", alignItems: "center", gap: 3,
-              borderBottom: activeTab === t.id ? "2px solid #C9A84C" : "2px solid transparent",
-              marginBottom: -1,
-            }}
-          >
-            {TabIcons[t.id]?.(activeTab === t.id)}
-            <span style={{ fontSize: 11, color: activeTab === t.id ? "#C9A84C" : "rgba(255,255,255,0.4)", fontWeight: activeTab === t.id ? 700 : 400 }}>
-              {t.label}
-            </span>
-          </button>
-        ))}
-      </div>
-
-      {/* ═══ HOT label ═══ */}
-      <div style={{ padding: "8px 12px 4px", display: "flex", alignItems: "center", gap: 6 }}>
-        {TabIcons[activeTab]?.(true)}
-        <span style={{ color: "#C9A84C", fontWeight: 700, fontSize: 14 }}>
-          {tabs.find(t => t.id === activeTab)?.label}
-        </span>
-      </div>
-
-      {/* ═══ JACKPOT BANNER ═══ */}
-      <div style={{ padding: "0 10px 8px" }}>
+      {/* ═══ JACKPOT ═══ */}
+      <div style={{ padding: "10px 10px 0" }}>
         <div style={{
           position: "relative", borderRadius: 10, overflow: "hidden",
           background: `url(${JACKPOT_BG}) center/cover no-repeat`,
-          minHeight: 70,
+          minHeight: 68,
           display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
         }}>
-          {/* fallback gradient if image fails */}
-          <div style={{
-            position: "absolute", inset: 0,
-            background: "linear-gradient(90deg, #0D0D1A, #1A1A2E, #0D0D1A)",
-            zIndex: 0,
-            opacity: 0.85
-          }} />
-          <div style={{ position: "relative", zIndex: 1, textAlign: "center", padding: "10px 0" }}>
-            <div style={{ fontSize: 10, color: "#C9A84C", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 2 }}>
-              JACKPOTS
+          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, #0D0D1A, #1A1A2E, #0D0D1A)", zIndex: 0 }} />
+          <div style={{ position: "relative", zIndex: 1, textAlign: "center", padding: "8px 0" }}>
+            <div style={{ fontSize: 10, color: "#C9A84C", fontWeight: 700, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 2 }}>
+              JACKPOT POOL
             </div>
-            <div className="jackpot-num" style={{ fontSize: 34 }}>
+            <div className="jackpot-num" style={{ fontSize: 32 }}>
               {jackpot.toLocaleString("vi-VN")}
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* ═══ HALL TABS ═══ */}
+      <div style={{
+        position: "sticky", top: 0, zIndex: 30,
+        background: "#0D0D1A",
+        display: "flex",
+        borderBottom: "1px solid rgba(201,168,76,0.2)",
+        overflowX: "auto",
+        scrollbarWidth: "none",
+        marginTop: 10,
+      }}>
+        {halls.map(h => {
+          const active = activeHall === h.id;
+          return (
+            <button
+              key={h.id}
+              onClick={() => { setActiveHall(h.id); setGameTab("all"); }}
+              style={{
+                flex: "0 0 auto",
+                minWidth: 60,
+                background: "none", border: "none", cursor: "pointer",
+                padding: "10px 14px 8px",
+                display: "flex", flexDirection: "column", alignItems: "center", gap: 2,
+                borderBottom: active ? "2px solid #C9A84C" : "2px solid transparent",
+                marginBottom: -1,
+              }}
+            >
+              {/* Provider logo text */}
+              <span style={{
+                fontSize: 13, fontWeight: 800,
+                fontFamily: "'Oswald', sans-serif",
+                color: active ? "#C9A84C" : "rgba(255,255,255,0.4)",
+                letterSpacing: "0.05em",
+                lineHeight: 1,
+              }}>
+                {h.label}
+              </span>
+              <span style={{ fontSize: 9, color: active ? "rgba(201,168,76,0.7)" : "rgba(255,255,255,0.25)", fontWeight: 400 }}>
+                SLOT
+              </span>
+            </button>
+          );
+        })}
+
+        {/* Favorites tab */}
+        <button
+          onClick={() => setGameTab(gameTab === "fav" ? "all" : "fav")}
+          style={{
+            flex: "0 0 auto", minWidth: 50,
+            background: "none", border: "none", cursor: "pointer",
+            padding: "10px 10px 8px",
+            display: "flex", flexDirection: "column", alignItems: "center", gap: 2,
+            borderBottom: gameTab === "fav" ? "2px solid #C9A84C" : "2px solid transparent",
+            marginBottom: -1, marginLeft: "auto",
+          }}
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill={gameTab === "fav" ? "#C9A84C" : "rgba(255,255,255,0.35)"}>
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+          </svg>
+          <span style={{ fontSize: 9, color: gameTab === "fav" ? "rgba(201,168,76,0.7)" : "rgba(255,255,255,0.25)" }}>YEU THICH</span>
+        </button>
+      </div>
+
+      {/* Hall label */}
+      <div style={{ padding: "8px 12px 4px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+          <div style={{ width: 3, height: 16, background: "linear-gradient(#C9A84C, #F5D787)", borderRadius: 2 }} />
+          <span style={{ fontFamily: "'Oswald', sans-serif", color: "#C9A84C", fontWeight: 700, fontSize: 15, letterSpacing: "0.05em" }}>
+            {gameTab === "fav" ? "YEU THICH" : `${currentHall.label} SLOT`}
+          </span>
+          <span style={{ fontSize: 11, color: "rgba(255,255,255,0.35)", marginLeft: 4 }}>
+            {displayGames.length} tro choi
+          </span>
         </div>
       </div>
 
@@ -218,25 +308,40 @@ export default function Home() {
               alt={game.name}
               loading="lazy"
               onError={e => {
-                (e.currentTarget as HTMLImageElement).src = `https://via.placeholder.com/200x267/1A1A2E/C9A84C?text=${encodeURIComponent(game.name)}`;
+                (e.currentTarget as HTMLImageElement).src =
+                  `https://placehold.co/200x267/1A1A2E/C9A84C?text=${encodeURIComponent(game.name)}&font=oswald`;
               }}
             />
             <div className="provider-badge">{game.provider}</div>
             <button
               className={`fav-icon ${favorites.has(game.id) ? "active" : ""}`}
               onClick={e => { e.stopPropagation(); toggleFav(game.id); }}
-              data-testid={`fav-${game.id}`}
               style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }}
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill={favorites.has(game.id) ? "#C9A84C" : "rgba(255,255,255,0.5)"}>
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+              </svg>
             </button>
             <div className="game-name">{game.name}</div>
+
+            {/* Play overlay */}
+            <div className="game-play-overlay">
+              <div style={{
+                width: 36, height: 36, borderRadius: "50%",
+                background: "rgba(201,168,76,0.9)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+              }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#0D0D1A">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              </div>
+            </div>
           </div>
         ))}
 
         {displayGames.length === 0 && (
-          <div style={{ gridColumn: "1 / -1", textAlign: "center", padding: "40px 0", color: "rgba(255,255,255,0.4)", fontSize: 13 }}>
-            Chưa có game nào trong danh sách này
+          <div style={{ gridColumn: "1 / -1", textAlign: "center", padding: "48px 0", color: "rgba(201,168,76,0.5)", fontSize: 13 }}>
+            Chua co game nao trong danh sach yeu thich
           </div>
         )}
       </div>
