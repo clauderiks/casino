@@ -4,13 +4,8 @@ import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 
-const rawPort = process.env.PORT || "5173";
-const port = Number(rawPort);
-
-if (Number.isNaN(port) || port <= 0) {
-  throw new Error(`Invalid PORT value: "${rawPort}"`);
-}
-
+// Use sensible defaults for PORT and BASE_PATH
+const port = Number(process.env.PORT || 5173);
 const basePath = process.env.BASE_PATH || "/";
 
 const plugins = [
@@ -19,9 +14,10 @@ const plugins = [
   runtimeErrorOverlay(),
 ];
 
-// Conditionally add Replit plugins if in dev and in Replit
-if (process.env.NODE_ENV !== "production" && process.env.REPL_ID !== undefined) {
+// Only add Replit plugins if explicitly in Replit environment
+if (process.env.REPL_ID) {
   try {
+    // Dynamic import for Replit cartographer plugin
     const cartographerPlugin = require("@replit/vite-plugin-cartographer");
     plugins.push(
       cartographerPlugin.cartographer({
@@ -29,14 +25,15 @@ if (process.env.NODE_ENV !== "production" && process.env.REPL_ID !== undefined) 
       })
     );
   } catch (e) {
-    // Silently fail if plugin not available
+    // Plugin not available, continue without it
   }
-  
+
   try {
+    // Dynamic import for Replit dev banner plugin
     const devBannerPlugin = require("@replit/vite-plugin-dev-banner");
     plugins.push(devBannerPlugin.devBanner());
   } catch (e) {
-    // Silently fail if plugin not available
+    // Plugin not available, continue without it
   }
 }
 
@@ -57,7 +54,7 @@ export default defineConfig({
   },
   server: {
     port,
-    strictPort: true,
+    strictPort: false,
     host: "0.0.0.0",
     allowedHosts: true,
     fs: {
