@@ -13,26 +13,36 @@ if (Number.isNaN(port) || port <= 0) {
 
 const basePath = process.env.BASE_PATH || "/";
 
+const plugins = [
+  react(),
+  tailwindcss(),
+  runtimeErrorOverlay(),
+];
+
+// Conditionally add Replit plugins if in dev and in Replit
+if (process.env.NODE_ENV !== "production" && process.env.REPL_ID !== undefined) {
+  try {
+    const cartographerPlugin = require("@replit/vite-plugin-cartographer");
+    plugins.push(
+      cartographerPlugin.cartographer({
+        root: path.resolve(import.meta.dirname, ".."),
+      })
+    );
+  } catch (e) {
+    // Silently fail if plugin not available
+  }
+  
+  try {
+    const devBannerPlugin = require("@replit/vite-plugin-dev-banner");
+    plugins.push(devBannerPlugin.devBanner());
+  } catch (e) {
+    // Silently fail if plugin not available
+  }
+}
+
 export default defineConfig({
   base: basePath,
-  plugins: [
-    react(),
-    tailwindcss(),
-    runtimeErrorOverlay(),
-    ...(process.env.NODE_ENV !== "production" &&
-    process.env.REPL_ID !== undefined
-      ? [
-          await import("@replit/vite-plugin-cartographer").then((m) =>
-            m.cartographer({
-              root: path.resolve(import.meta.dirname, ".."),
-            }),
-          ),
-          await import("@replit/vite-plugin-dev-banner").then((m) =>
-            m.devBanner(),
-          ),
-        ]
-      : []),
-  ],
+  plugins,
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "src"),
